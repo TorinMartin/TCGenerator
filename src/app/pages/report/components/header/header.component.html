@@ -5,6 +5,16 @@
 </div>
 <br>
 <div align="center">
-    <span style="font-size:150%;line-height:116%">DITC-(<input type="text" class="form-control collision-num" placeholder="000">)<br></span>
+    <span style="font-size:150%;line-height:116%">
+        <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-secondary" id="dropdownMenu" ngbDropdownToggle>
+              {{ selectedType }}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownMenu">
+              <button ngbDropdownItem *ngFor="let option of typeOptions" (click)="selectType(option)">
+                {{ option }}
+              </button>
+            </div>
+        </div>-(<input type="text" class="form-control collision-num" placeholder="000">)<br></span>
 </div>
 <hr>

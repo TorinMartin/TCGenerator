@@ -1,7 +1,6 @@
 main {
     width: 100%;
     min-height: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
@@ -10,7 +9,8 @@ main {
 }
 
   .content {
-    max-width: 75vw;
+    max-width: 50vw;
+    overflow: hidden;
     margin: 0 auto;
     line-height: 21px;
     font-size: 14px;
