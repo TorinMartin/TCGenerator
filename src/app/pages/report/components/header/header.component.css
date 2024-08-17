@@ -1,0 +1,4 @@
+.collision-num {
+    width: 55px; /* Adjust width as needed */
+    display: inline-block; /* Ensures the input is not stretched to full width */
+}
