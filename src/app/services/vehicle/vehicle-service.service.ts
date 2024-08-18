@@ -31,10 +31,10 @@ export class VehicleService {
     this.vehicles = this.vehicles.filter(v => v.id !== idToDel);
   }
 
-  setDriverFor(id: number, driverId: number, driverCode: string) {
+  setDriverFor(id: number, driverId: string) {
     const vehicle = this.vehicles.find(v => v.id === id);
     if (vehicle) {
-        vehicle.driver = driverCode + driverId;
+        vehicle.driver = driverId;
     }
   }
 

@@ -19,19 +19,26 @@ export class InvolvedPersonsComponent {
 
   constructor(public personService: PersonService) { }
 
-  onFNameChange(id: number, event: Event) {
+  filterCodeOptions(exclude: string) {
+    if (exclude.startsWith("PED")) {
+      return this.codeOptions.filter(c => c !== "PED").map(o => this.personService.getNextId(o));
+    }
+    return this.codeOptions.filter(c => c === "PED" || !c.startsWith(exclude[0])).map(o => this.personService.getNextId(o));
+  }
+
+  onFNameChange(id: string, event: Event) {
     const inputElement = event.target as HTMLInputElement;
 
     this.personService.setFNameFor(id, inputElement.value);
   }
 
-  onLNameChange(id: number, event: Event) {
+  onLNameChange(id: string, event: Event) {
     const inputElement = event.target as HTMLInputElement;
 
     this.personService.setLNameFor(id, inputElement.value);
   }
 
-  onAgeChange(id: number, event: Event) {
+  onAgeChange(id: string, event: Event) {
     const inputElement = event.target as HTMLInputElement;
 
     this.personService.setAgeFor(id, inputElement.value);

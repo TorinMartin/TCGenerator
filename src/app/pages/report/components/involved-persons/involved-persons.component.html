@@ -48,10 +48,10 @@
         <td valign="top">
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
-                  {{ person.code || codeOptions[0] }}
+                  {{ person.id }}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownMenu">
-                  <button ngbDropdownItem class="btn-sm" *ngFor="let option of codeOptions" (click)="personService.setCodeFor(person.id, option)">
+                  <button ngbDropdownItem class="btn-sm" *ngFor="let option of filterCodeOptions(person.id)" (click)="personService.setIdFor(person.id, option)">
                     {{ option }}
                   </button>
                 </div>

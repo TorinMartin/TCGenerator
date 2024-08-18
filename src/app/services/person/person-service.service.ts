@@ -8,72 +8,84 @@ export class PersonService {
 
   constructor() { }
 
-  public persons: Person[] = [new Person(1)];
+  public persons: Person[] = [new Person("D1")];
 
   getPersons() {
-    let result = this.persons.sort((a, b) => a.id - b.id);
-    return result;
+    //let result = this.persons.sort((a, b) => a.id[a.id] - b.id);
+    return this.persons;
   }
 
   addPerson() {
-    const ids = this.persons.map(person => person.id);
-    
-    let newId = 1;
-    while (ids.includes(newId)) {
-      newId++;
-    }
+    let id = this.getNextId("D");
 
-    let person: Person = new Person(newId);
+    let person: Person = new Person(id);
     this.persons.push(person);
   }
 
-  removePerson(idToDel: number) {
+  getNextId(prefix: string): string {
+    const filteredIds = this.persons
+      .filter(p => p.id.startsWith(prefix))
+      .map(p => parseInt(p.id.replace(prefix, ''), 10))
+      .sort((a, b) => a - b);
+  
+    let newId = 1;
+    for (let i = 0; i < filteredIds.length; i++) {
+      if (filteredIds[i] !== newId) {
+        break;
+      }
+      newId++;
+    }
+  
+    return `${prefix}${newId}`;
+  }
+
+  removePerson(idToDel: string) {
     this.persons = this.persons.filter(p => p.id !== idToDel);
   }
 
-  setCodeFor(id: number, value: string) {
+  setIdFor(id: string, value: string) {
     const person = this.persons.find(p => p.id === id);
     if (person) {
-        person.code = value;
+        person.id = value;
     }
   }
 
-  setSexFor(id: number, value: string) {
+  setSexFor(id: string, value: string) {
     const person = this.persons.find(p => p.id === id);
     if (person) {
         person.sex = value;
     }
   }
 
-  setBeltedFor(id: number, value: string) {
+  setBeltedFor(id: string, value: string) {
     const person = this.persons.find(p => p.id === id);
     if (person) {
         person.belted = value;
     }
   }
 
-  setStatusFor(id: number, value: string) {
+  setStatusFor(id: string, value: string) {
     const person = this.persons.find(p => p.id === id);
     if (person) {
         person.status = value;
     }
   }
 
-  setFNameFor(id: number, value: string) {
+  setFNameFor(id: string, value: string) {
   const person = this.persons.find(p => p.id === id);
     if (person) {
         person.firstName = value;
     }
   }
 
-  setLNameFor(id: number, value: string) {
+  setLNameFor(id: string, value: string) {
   const person = this.persons.find(p => p.id === id);
     if (person) {
         person.lastName = value;
     }
   }
 
-  setAgeFor(id: number, value: string) {
+  setAgeFor(id: string, value: string) {
   const person = this.persons.find(p => p.id === id);
     if (person) {
         person.age = value;

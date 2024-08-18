@@ -52,8 +52,8 @@
                   {{ vehicle.driver }}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownMenu">
-                  <button ngbDropdownItem class="btn-sm" *ngFor="let driver of getDrivers()" (click)="vehicleService.setDriverFor(vehicle.id, driver.id, driver.code)">
-                    {{ driver.code + driver.id }}
+                  <button ngbDropdownItem class="btn-sm" *ngFor="let driver of getDrivers()" (click)="vehicleService.setDriverFor(vehicle.id, driver.id)">
+                    {{ driver.id }}
                   </button>
                 </div>
             </div>

@@ -20,7 +20,7 @@ export class InvolvedVehiclesComponent {
   constructor(private personService: PersonService, public vehicleService: VehicleService) { }
 
   getDrivers(): Person[] {
-    let drivers = this.personService.persons.filter(p => p.code === "D");
+    let drivers = this.personService.persons.filter(p => p.id.startsWith("D"));
     return drivers ?? [];
   }
 

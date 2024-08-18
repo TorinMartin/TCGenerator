@@ -1,6 +1,5 @@
 export class Person {
-    public id: number;
-    public code: string = "D";
+    public id: string;
     public lastName: string | undefined;
     public firstName: string | undefined;
     public sex: string | undefined;
@@ -8,7 +7,7 @@ export class Person {
     public belted: string | undefined;
     public status: string | undefined;
 
-    public constructor(id: number) {
+    public constructor(id: string) {
         this.id = id;
     }
 }
