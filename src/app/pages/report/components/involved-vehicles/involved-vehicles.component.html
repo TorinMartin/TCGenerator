@@ -42,17 +42,17 @@
 
         </td>
     </tr>
-    <tr *ngFor="let vehicle of vehicleService.vehicles">
+    <tr *ngFor="let vehicle of vehicleService.getVehicles()">
         <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
             <span style="font-size:85%;line-height:116%">V{{vehicle.id}}<br></span>
         </td>
         <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
-                  {{"D1"}}
+                  {{ vehicle.driver }}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownMenu">
-                  <button ngbDropdownItem class="btn-sm" *ngFor="let driver of getDrivers()" (click)="vehicleService.setDriverFor(driver.id, driver.code)">
+                  <button ngbDropdownItem class="btn-sm" *ngFor="let driver of getDrivers()" (click)="vehicleService.setDriverFor(vehicle.id, driver.id, driver.code)">
                     {{ driver.code + driver.id }}
                   </button>
                 </div>
@@ -62,13 +62,13 @@
             <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="P1, P2" (input)="onPassengersChange(vehicle.id, $event)">
         </td>
         <td valign="top">
-            <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Tag" (input)="onPassengersChange(vehicle.id, $event)">
+            <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Tag" (input)="onTagChange(vehicle.id, $event)">
         </td>
         <td valign="top">
-            <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Color" (input)="onPassengersChange(vehicle.id, $event)">
+            <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Color" (input)="onColorChange(vehicle.id, $event)">
         </td>
         <td valign="top">
-            <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Model" (input)="onPassengersChange(vehicle.id, $event)">
+            <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Model" (input)="onModelChange(vehicle.id, $event)">
         </td>
         <td valign="top">
             <div ngbDropdown class="d-inline-block">

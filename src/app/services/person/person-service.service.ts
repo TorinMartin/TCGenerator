@@ -10,9 +10,20 @@ export class PersonService {
 
   public persons: Person[] = [new Person(1)];
 
+  getPersons() {
+    let result = this.persons.sort((a, b) => a.id - b.id);
+    return result;
+  }
+
   addPerson() {
-    let last = this.persons[this.persons.length - 1]?.id ?? 0;
-    let person: Person = new Person(last + 1);
+    const ids = this.persons.map(person => person.id);
+    
+    let newId = 1;
+    while (ids.includes(newId)) {
+      newId++;
+    }
+
+    let person: Person = new Person(newId);
     this.persons.push(person);
   }
 

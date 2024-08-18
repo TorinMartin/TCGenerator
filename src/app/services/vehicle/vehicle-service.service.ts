@@ -10,9 +10,20 @@ export class VehicleService {
 
   constructor() { }
 
+  getVehicles() {
+    let result = this.vehicles.sort((a, b) => a.id - b.id);
+    return result;
+  }
+
   addVehicle() {
-    let last = this.vehicles[this.vehicles.length - 1]?.id ?? 0;
-    let vehicle: Vehicle = new Vehicle(last + 1);
+    const ids = this.vehicles.map(vehicle => vehicle.id);
+    
+    let newId = 1;
+    while (ids.includes(newId)) {
+      newId++;
+    }
+
+    let vehicle: Vehicle = new Vehicle(newId);
     this.vehicles.push(vehicle);
   }
 
@@ -20,10 +31,10 @@ export class VehicleService {
     this.vehicles = this.vehicles.filter(v => v.id !== idToDel);
   }
 
-  setDriverFor(id: number, value: string) {
+  setDriverFor(id: number, driverId: number, driverCode: string) {
     const vehicle = this.vehicles.find(v => v.id === id);
     if (vehicle) {
-        vehicle.driver = value;
+        vehicle.driver = driverCode + driverId;
     }
   }
 
@@ -31,6 +42,27 @@ export class VehicleService {
     const vehicle = this.vehicles.find(v => v.id === id);
     if (vehicle) {
         vehicle.passengers = value;
+    }
+  }
+
+  setTagFor(id: number, value: string) {
+    const vehicle = this.vehicles.find(v => v.id === id);
+    if (vehicle) {
+        vehicle.tag = value;
+    }
+  }
+
+  setColorFor(id: number, value: string) {
+    const vehicle = this.vehicles.find(v => v.id === id);
+    if (vehicle) {
+        vehicle.color = value;
+    }
+  }
+
+  setModelFor(id: number, value: string) {
+    const vehicle = this.vehicles.find(v => v.id === id);
+    if (vehicle) {
+        vehicle.model = value;
     }
   }
 

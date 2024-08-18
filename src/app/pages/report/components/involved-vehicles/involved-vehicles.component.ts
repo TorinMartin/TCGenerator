@@ -29,4 +29,22 @@ export class InvolvedVehiclesComponent {
 
     this.vehicleService.setPassengersFor(id, inputElement.value);
   }
+
+  onTagChange(id: number, event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+
+    this.vehicleService.setTagFor(id, inputElement.value);
+  }
+
+  onColorChange(id: number, event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+
+    this.vehicleService.setColorFor(id, inputElement.value);
+  }
+
+  onModelChange(id: number, event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+
+    this.vehicleService.setModelFor(id, inputElement.value);
+  }
 }

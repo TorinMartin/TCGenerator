@@ -44,7 +44,7 @@
         <td valign="top">   
         </td>
     </tr>
-    <tr *ngFor="let person of personService.persons">
+    <tr *ngFor="let person of personService.getPersons()">
         <td valign="top">
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
