@@ -1,56 +1,35 @@
 <div style="overflow:hidden;background-color:white;border:1px solid rgba(0,0,0,0.2);border-radius:5px;margin:10px 10px;padding:15px">
     <div align="center"><span style="font-size:85%;line-height:116%"><strong class="text-strong">ATTACHED EVIDENCE</strong></span></div>
-    <span style="font-size:85%;line-height:116%"><br>
-    <br>
-    EXHIBIT A - PHOTOGRAPHS OF VEHICLES INVOLVED</span>
-    <div style="padding:3px;background-color:#fff;border:1px solid #d8d8d8;font-size:1em">
-       <div style="text-transform:uppercase;border-bottom:1px solid #ccc;margin-bottom:3px;font-size:0.8em;font-weight:bold;display:block"><span onclick="if (this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display != '') {  this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = ''; this.innerHTML = '&lt;b&gt;SPOILER: &lt;/b&gt;&lt;a href=\'#\' onClick=\'return false;\'&gt;hide&lt;/a&gt;'; } else { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = 'none'; this.innerHTML = '&lt;b&gt;SPOILER: &lt;/b&gt;&lt;a href=\'#\' onClick=\'return false;\'&gt;show&lt;/a&gt;'; }"><b>SPOILER: </b><a href="#" onclick="return false;">show</a></span></div>
-       <div class="quotecontent">
-          <div style="display:none">
-             <span style="font-size:85%;line-height:116%"><img src="https://i.imgur.com/HEmniJA.png" class="postimage" alt="Image"><br>
-             <img src="https://i.imgur.com/XsPBJX4.png" class="postimage" alt="Image"><br>
-             <img src="https://i.imgur.com/yzGeYkH.png" class="postimage" alt="Image"><br>
-             <img src="https://i.imgur.com/uzbiWLX.png" class="postimage" alt="Image"><br>
-             <img src="https://i.imgur.com/HZ3NFTB.png" class="postimage" alt="Image"></span>
-          </div>
-       </div>
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-primary btn-sm ms-1 mb-1 mr-1 fw-bold" (click)="openModal()">Add Exhibit</button>
     </div>
-    <span style="font-size:85%;line-height:116%"><br>
     <br>
-    EXHIBIT B - 283 Edward DICVS Footage</span>
-    <div style="padding:3px;background-color:#fff;border:1px solid #d8d8d8;font-size:1em">
-       <div style="text-transform:uppercase;border-bottom:1px solid #ccc;margin-bottom:3px;font-size:0.8em;font-weight:bold;display:block"><span onclick="if (this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display != '') {  this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = ''; this.innerHTML = '&lt;b&gt;SPOILER: &lt;/b&gt;&lt;a href=\'#\' onClick=\'return false;\'&gt;hide&lt;/a&gt;'; } else { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = 'none'; this.innerHTML = '&lt;b&gt;SPOILER: &lt;/b&gt;&lt;a href=\'#\' onClick=\'return false;\'&gt;show&lt;/a&gt;'; }"><b>SPOILER: </b><a href="#" onclick="return false;">show</a></span></div>
-       <div class="quotecontent">
-          <div style="display:none">
-             <span style="font-size:85%;line-height:116%"><a href="https://streamable.com/c1o3ac" class="postlink">https://streamable.com/c1o3ac</a></span>
-          </div>
-       </div>
+    <div *ngFor="let exhibit of getExhibits()">
+      <div class="d-flex align-items-center mb-1">
+         <button class="btn btn-danger del fw-bold btn-sm mr-1" (click)="removeExhibit(exhibit.id)">X</button>
+         <span class="ms-1" style="font-size:85%;line-height:116%">{{ generateExhibitTitle(exhibit) }}</span>
+      </div>
+      <div *ngIf="exhibit.isSpoiler; else noSpoiler" class="mb-3">
+         <div style="background-color:#fff;border:1px solid #d8d8d8;font-size:1em;overflow:hidden">
+            <div class="p-1" style="text-transform:uppercase;border-bottom:1px solid #ccc;margin-bottom:3px;font-size:0.8em;font-weight:bold;display:block"><span onclick="if (this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display != '') {  this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = ''; this.innerHTML = '&lt;b&gt;SPOILER: &lt;/b&gt;&lt;a href=\'#\' onClick=\'return false;\'&gt;hide&lt;/a&gt;'; } else { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = 'none'; this.innerHTML = '&lt;b&gt;SPOILER: &lt;/b&gt;&lt;a href=\'#\' onClick=\'return false;\'&gt;show&lt;/a&gt;'; }"><b>SPOILER: </b><a href="#" onclick="return false;">show</a></span></div>
+            <div class="quotecontent p-1">
+               <div style="display:none">
+                  <div *ngFor="let evidence of exhibit.evidence">
+                     <p *ngIf="evidence.type === 'text'">{{ evidence.value }}</p>
+                     <img *ngIf="evidence.type === 'image'" [src]="evidence.value" class="postimage" alt="Image">
+                     <p *ngIf="evidence.type === 'do'" class="do">{{ evidence.value }}</p>
+                   </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <ng-template #noSpoiler>
+         <ng-container *ngFor="let evidence of exhibit.evidence">
+           <p *ngIf="evidence.type === 'text'">{{ evidence.value }}</p>
+           <img *ngIf="evidence.type === 'image'" [src]="evidence.value" class="postimage" alt="Image">
+           <p *ngIf="evidence.type === 'do'" class="do">{{ evidence.value }}</p>
+         </ng-container>
+      </ng-template>
     </div>
-    <span style="font-size:85%;line-height:116%"><br>
-    <br>
-    EXHIBIT C - Emeric Donovan's Statement</span>
-    <div style="padding:3px;background-color:#fff;border:1px solid #d8d8d8;font-size:1em">
-       <div style="text-transform:uppercase;border-bottom:1px solid #ccc;margin-bottom:3px;font-size:0.8em;font-weight:bold;display:block"><span onclick="if (this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display != '') {  this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = ''; this.innerHTML = '&lt;b&gt;SPOILER: &lt;/b&gt;&lt;a href=\'#\' onClick=\'return false;\'&gt;hide&lt;/a&gt;'; } else { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = 'none'; this.innerHTML = '&lt;b&gt;SPOILER: &lt;/b&gt;&lt;a href=\'#\' onClick=\'return false;\'&gt;show&lt;/a&gt;'; }"><b>SPOILER: </b><a href="#" onclick="return false;">show</a></span></div>
-       <div class="quotecontent">
-          <div style="display:none">
-             <span style="font-size:85%;line-height:116%">Earlier we had a situation at the Davis LTD, context not too relevant. I drove away from that, made a pass through the alleyway here behind the LTD because I was going after a couple of masked up folks reported in my Alviar. So I came out here, landed, and drove on the wrong side of the road myself. Approached the intersection here, didn't see the stop sign cause, well, obviously when I was on the wrong side. Didn't navigate myself properly. I'm tired, too... You can hear that in the dashcam. It wouldn't crash like that if she yielded.<br>
-             <br>
-             I was trying to catch up to the masked folks that were reported by Alviar over the radio. They were headed over to HOJ. So I guess I just wanted to catch up quicker? Popped out the alley, totally screwed up on getting the right lane. So I own up to that, I messed that up. Same with the stop sign. But she also failed to yield and yeah, well... the result you see on my car.</span>
-          </div>
-       </div>
-    </div>
-    <span style="font-size:85%;line-height:116%"><br>
-    <br>
-    EXHIBIT D - Alicia Hayes's Statement</span>
-    <div style="padding:3px;background-color:#fff;border:1px solid #d8d8d8;font-size:1em">
-       <div style="text-transform:uppercase;border-bottom:1px solid #ccc;margin-bottom:3px;font-size:0.8em;font-weight:bold;display:block"><span onclick="if (this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display != '') {  this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = ''; this.innerHTML = '&lt;b&gt;SPOILER: &lt;/b&gt;&lt;a href=\'#\' onClick=\'return false;\'&gt;hide&lt;/a&gt;'; } else { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = 'none'; this.innerHTML = '&lt;b&gt;SPOILER: &lt;/b&gt;&lt;a href=\'#\' onClick=\'return false;\'&gt;show&lt;/a&gt;'; }"><b>SPOILER: </b><a href="#" onclick="return false;">show</a></span></div>
-       <div class="quotecontent">
-          <div style="display:none">
-             <span style="font-size:85%;line-height:116%">I was driving down the road towards the clothing shop. Maybe thirty or fourty miles an hour and basically out of nowhere he just ran the stop sign and blew through the intersection. I was driving down the road, slowed down at the intersection and he just completely disregarded the stop sign. Even though I was on a road with priority, I still slowed down a little bit. It just— happened. I had no time to yield as he just blew through.</span>
-          </div>
-       </div>
-    </div>
-    <span style="font-size:85%;line-height:116%"><br>
-    <br>
-    </span>
  </div>

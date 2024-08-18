@@ -11,7 +11,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HeaderComponent {
   readonly typeOptions: string[] = ['TC', 'DITC'];
-  selectedType: string = this.typeOptions[1];
+  selectedType: string = this.typeOptions[0];
 
   selectType(option: string) {
     this.selectedType = option;

@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h4 class="modal-title">Add Exhibit</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="d-flex align-items-center">
+        <input type="text" id="exhibitTitle" class="form-control form-control-sm" placeholder="Exhibit Title" #exhibitTitle>
+        <div class="form-check ms-1">
+            <input class="form-check-input" type="checkbox" id="spoilerCheckbox" [(ngModel)]="isSpoiler" >
+            <label class="form-check-label" for="spoilerCheckbox">
+              Spoiler
+            </label>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <button type="button" class="m-1 btn btn-primary btn-sm" (click)="addTextInput()">Add Text</button>
+        <button type="button" class="m-1 btn btn-primary btn-sm" (click)="addImageInput()">Add Image</button>
+        <button type="button" class="m-1 btn btn-primary btn-sm" (click)="addDoInput()">Add /do</button>
+    </div>
+    <div *ngFor="let input of inputs">
+        <div class="d-flex mt-1" *ngIf="input.type === 'image'">
+            <input type="text" id="input{{input.id}}" class="form-control form-control-sm" placeholder="Image URL" #inputElement>
+            <button class="btn btn-danger del fw-bold btn-sm ms-1" (click)="removeInput(input.id)">X</button>
+        </div>
+        <div class="d-flex mt-1" *ngIf="input.type === 'do'">
+            <input type="text" id="input{{input.id}}" class="form-control form-control-sm" placeholder="/do" #inputElement>
+            <button class="btn btn-danger del fw-bold btn-sm ms-1" (click)="removeInput(input.id)">X</button>
+        </div>
+        <div class="d-flex mt-1" *ngIf="input.type === 'text'">
+            <textarea id="input{{input.id}}" class="form-control" rows="4" placeholder="Enter evidence text" #inputElement></textarea>
+            <button class="btn btn-danger del fw-bold btn-sm ms-1" (click)="removeInput(input.id)">X</button>
+        </div>    
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="addExhibit()">Add Exhibit</button>
+  </div>

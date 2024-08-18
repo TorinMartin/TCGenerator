@@ -1,0 +1,14 @@
+.do {
+    color: #c2a2da;
+    text-shadow: -1px -1px 0 #000,0   -1px 0 #000,1px -1px 0 #000,1px  0   0 #000,1px  1px 0 #000,0    1px 0 #000,-1px  1px 0 #000,-1px  0   0 #000;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.postimage {
+    max-width: 100%;
+}
+
+.del {
+    font-size: 0.45rem;
+}
