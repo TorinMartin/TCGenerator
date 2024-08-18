@@ -15,90 +15,95 @@
     </span>
   </div>
   <div class="ms-auto">
-    <button class="btn btn-primary btn-sm ms-1 mb-1 mr-1 fw-bold">+</button>
+    <button class="btn btn-primary btn-sm ms-1 mb-1 mr-1 fw-bold" (click)="personService.addPerson()">+</button>
   </div>
 </div>
-<table style="width:100%;display:inline-table;border:#333 solid 1px;background:#fff;font-family:Arial">
+<table style="width:100%;display:inline-table;border:#333 solid 1px;background:#fff;font-family:Arial;table-layout:fixed;">
     <tr>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="small-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">CODE</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="large-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">L. NAME</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="large-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">F. NAME</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top"class="small-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">SEX</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="small-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">AGE</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="small-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">BELTED</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td class="large-cell" valign="top">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">STATUS</strong></span>
         </td>
+        <td valign="top">   
+        </td>
     </tr>
-    <tr>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+    <tr *ngFor="let person of personService.persons">
+        <td valign="top">
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
-                  {{ selectedCode }}
+                  {{ person.code || codeOptions[0] }}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownMenu">
-                  <button ngbDropdownItem class="btn-sm" *ngFor="let option of codeOptions" (click)="selectCode(option)">
+                  <button ngbDropdownItem class="btn-sm" *ngFor="let option of codeOptions" (click)="personService.setCodeFor(person.id, option)">
                     {{ option }}
                   </button>
                 </div>
             </div>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%"><input type="text" id="smallInput" class="form-control form-control-sm" placeholder="L. Name"></span>
+        <td valign="top">
+            <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="L. Name" (input)="onLNameChange(person.id, $event)">
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%"><input type="text" id="smallInput" class="form-control form-control-sm" placeholder="F. Name"></span>
+        <td valign="top">
+            <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="F. Name" (input)="onFNameChange(person.id, $event)">
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top">
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
-                  {{ selectedSex }}
+                  {{ person.sex || sexOptions[0] }}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownMenu">
-                  <button ngbDropdownItem class="btn-sm" *ngFor="let option of sexOptions" (click)="selectSex(option)">
+                  <button ngbDropdownItem class="btn-sm" *ngFor="let option of sexOptions" (click)="personService.setSexFor(person.id, option)">
                     {{ option }}
                   </button>
                 </div>
             </div>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%"><input type="text" id="smallInput" class="form-control form-control-sm age-input" placeholder="Age"></span>
+        <td valign="top">
+            <input type="text" id="smallInput" class="form-control form-control-sm age-input" placeholder="Age" (input)="onAgeChange(person.id, $event)">
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top">
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
-                  {{ selectedBelted }}
+                  {{ person.belted || beltedOptions[0] }}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownMenu">
-                  <button ngbDropdownItem class="btn-sm" *ngFor="let option of beltedOptions" (click)="selectBelted(option)">
+                  <button ngbDropdownItem class="btn-sm" *ngFor="let option of beltedOptions" (click)="personService.setBeltedFor(person.id, option)">
                     {{ option }}
                   </button>
                 </div>
             </div>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top">
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
-                  {{ selectedStatus }}
+                  {{ person.status || statusOptions[0] }}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownMenu">
-                  <button ngbDropdownItem class="btn-sm" *ngFor="let option of statusOptions" (click)="selectStatus(option)">
+                  <button ngbDropdownItem class="btn-sm" *ngFor="let option of statusOptions" (click)="personService.setStatusFor(person.id, option)">
                     {{ option }}
                   </button>
                 </div>
             </div>
+        </td>
+        <td class="text-center">
+          <button class="btn btn-danger del fw-bold" (click)="personService.removePerson(person.id)">X</button>
         </td>
     </tr>
 </table><br>

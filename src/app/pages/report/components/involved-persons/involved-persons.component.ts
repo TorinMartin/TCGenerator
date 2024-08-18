@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { PersonService } from '../../../../services/person/person-service.service';
 
 
 @Component({
@@ -15,24 +16,24 @@ export class InvolvedPersonsComponent {
   readonly sexOptions: string[] = ['M', 'F'];
   readonly beltedOptions: string[] = ['Y', 'N'];
   readonly statusOptions: string[] = ['UNHARMED', 'INJURED', 'SEVERELY INJURED', 'DECEASED'];
-  selectedCode: string = this.codeOptions[0];
-  selectedSex: string = this.sexOptions[0];
-  selectedBelted: string = this.beltedOptions[0];
-  selectedStatus: string = this.statusOptions[0];
 
-  selectCode(option: string) {
-    this.selectedCode = option;
+  constructor(public personService: PersonService) { }
+
+  onFNameChange(id: number, event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+
+    this.personService.setFNameFor(id, inputElement.value);
   }
 
-  selectSex(option: string) {
-    this.selectedSex = option;
+  onLNameChange(id: number, event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+
+    this.personService.setLNameFor(id, inputElement.value);
   }
 
-  selectBelted(option: string) {
-    this.selectedBelted = option;
-  }
+  onAgeChange(id: number, event: Event) {
+    const inputElement = event.target as HTMLInputElement;
 
-  selectStatus(option: string) {
-    this.selectedStatus = option;
+    this.personService.setAgeFor(id, inputElement.value);
   }
 }
