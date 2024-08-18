@@ -5,8 +5,8 @@ export class Vehicle {
     public tag: string | undefined;
     public color: string | undefined;
     public model: string | undefined;
-    public damage: string | undefined;
-    public towed: string | undefined;
+    public damage: string = "FUNCTIONAL";
+    public towed: string = "N";
 
     constructor(id: number) {
         this.id = id;

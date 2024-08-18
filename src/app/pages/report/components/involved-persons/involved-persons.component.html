@@ -15,7 +15,7 @@
     </span>
   </div>
   <div class="ms-auto">
-    <button class="btn btn-primary btn-sm ms-1 mb-1 mr-1 fw-bold" (click)="personService.addPerson()">+</button>
+    <button class="btn btn-primary btn-sm ms-1 mb-1 mr-1 fw-bold" (click)="personService.addPerson()">Add</button>
   </div>
 </div>
 <table style="width:100%;display:inline-table;border:#333 solid 1px;background:#fff;font-family:Arial;table-layout:fixed;">
@@ -66,7 +66,7 @@
         <td valign="top">
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
-                  {{ person.sex || sexOptions[0] }}
+                  {{ person.sex }}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownMenu">
                   <button ngbDropdownItem class="btn-sm" *ngFor="let option of sexOptions" (click)="personService.setSexFor(person.id, option)">
@@ -81,7 +81,7 @@
         <td valign="top">
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
-                  {{ person.belted || beltedOptions[0] }}
+                  {{ person.belted }}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownMenu">
                   <button ngbDropdownItem class="btn-sm" *ngFor="let option of beltedOptions" (click)="personService.setBeltedFor(person.id, option)">
@@ -93,7 +93,7 @@
         <td valign="top">
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
-                  {{ person.status || statusOptions[0] }}
+                  {{ person.status }}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownMenu">
                   <button ngbDropdownItem class="btn-sm" *ngFor="let option of statusOptions" (click)="personService.setStatusFor(person.id, option)">

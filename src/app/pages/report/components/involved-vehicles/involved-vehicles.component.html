@@ -9,7 +9,7 @@
       </span>
     </div>
     <div class="ms-auto">
-      <button class="btn btn-primary btn-sm ms-1 mb-1 mr-1 fw-bold" (click)="vehicleService.addVehicle()">+</button>
+      <button class="btn btn-primary btn-sm ms-1 mb-1 mr-1 fw-bold" (click)="vehicleService.addVehicle()">Add</button>
     </div>
 </div>
 <table style="width:100%;display:inline-table;border:#333 solid 1px;background:#fff;font-family:Arial;table-layout:fixed;">
@@ -73,7 +73,7 @@
         <td valign="top">
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
-                  {{ vehicle.damage || damageOptions[0] }}
+                  {{ vehicle.damage }}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownMenu">
                   <button ngbDropdownItem class="btn-sm" *ngFor="let option of damageOptions" (click)="vehicleService.setDamageFor(vehicle.id, option)">
@@ -85,7 +85,7 @@
         <td valign="top">
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
-                  {{ vehicle.towed || towedOptions[0] }}
+                  {{ vehicle.towed }}
                 </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownMenu">
                   <button ngbDropdownItem class="btn-sm" *ngFor="let option of towedOptions" (click)="vehicleService.setTowedFor(vehicle.id, option)">
