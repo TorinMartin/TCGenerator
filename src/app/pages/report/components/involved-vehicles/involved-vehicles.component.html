@@ -9,60 +9,93 @@
       </span>
     </div>
     <div class="ms-auto">
-      <button class="btn btn-primary btn-sm ms-1 mb-1 mr-1 fw-bold">+</button>
+      <button class="btn btn-primary btn-sm ms-1 mb-1 mr-1 fw-bold" (click)="vehicleService.addVehicle()">+</button>
     </div>
 </div>
-<table style="width:100%;display:inline-table;border:#333 solid 1px;background:#fff;font-family:Arial">
+<table style="width:100%;display:inline-table;border:#333 solid 1px;background:#fff;font-family:Arial;table-layout:fixed;">
     <tr>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="small-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">CODE</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="small-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">DRIVER</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="large-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">PASSENGERS</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="small-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">TAG</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="small-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">COLOR</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="large-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">MODEL</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="large-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">DAMAGE</strong></span>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
+        <td valign="top" class="small-cell">
             <span style="font-size:85%;line-height:116%"><strong class="text-strong">TOWED</strong></span>
         </td>
+        <td valign="top" class="small-cell">
+
+        </td>
     </tr>
-    <tr>
+    <tr *ngFor="let vehicle of vehicleService.vehicles">
         <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%">V1<br></span>
+            <span style="font-size:85%;line-height:116%">V{{vehicle.id}}<br></span>
         </td>
         <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%">D1<br></span>
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
+                  {{"D1"}}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownMenu">
+                  <button ngbDropdownItem class="btn-sm" *ngFor="let driver of getDrivers()" (click)="vehicleService.setDriverFor(driver.id, driver.code)">
+                    {{ driver.code + driver.id }}
+                  </button>
+                </div>
+            </div>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%">N/A<br></span>
+        <td valign="top">
+            <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="P1, P2" (input)="onPassengersChange(vehicle.id, $event)">
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%">12233552<br></span>
+        <td valign="top">
+            <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Tag" (input)="onPassengersChange(vehicle.id, $event)">
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%">Black &amp; White Marked.<br></span>
+        <td valign="top">
+            <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Color" (input)="onPassengersChange(vehicle.id, $event)">
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%">Vapid Police Interceptor Utility<br></span>
+        <td valign="top">
+            <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Model" (input)="onPassengersChange(vehicle.id, $event)">
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%">FUNCTIONAL<br></span>
+        <td valign="top">
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
+                  {{ vehicle.damage || damageOptions[0] }}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownMenu">
+                  <button ngbDropdownItem class="btn-sm" *ngFor="let option of damageOptions" (click)="vehicleService.setDamageFor(vehicle.id, option)">
+                    {{ option }}
+                  </button>
+                </div>
+            </div>
         </td>
-        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%">N<br></span>
+        <td valign="top">
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-secondary btn-sm px-2 py-1" id="dropdownMenu" ngbDropdownToggle>
+                  {{ vehicle.towed || towedOptions[0] }}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownMenu">
+                  <button ngbDropdownItem class="btn-sm" *ngFor="let option of towedOptions" (click)="vehicleService.setTowedFor(vehicle.id, option)">
+                    {{ option }}
+                  </button>
+                </div>
+            </div>
+        </td>
+        <td class="text-center">
+            <button class="btn btn-danger del fw-bold" (click)="vehicleService.removeVehicle(vehicle.id)">X</button>
         </td>
     </tr>
 </table><br>
