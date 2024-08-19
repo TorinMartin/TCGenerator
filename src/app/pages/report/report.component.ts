@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from './components/header/header.component'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GenerationService } from '../../services/generation/generation.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-report',
@@ -11,11 +12,17 @@ export class ReportComponent {
 
   bbCodeSubject: string = "";
   bbCodeContent: string = "";
+  isLoading: boolean = false;
 
-  constructor(private _generationService: GenerationService) { }
+  constructor(private _generationService: GenerationService, private toastr: ToastrService) { }
 
   generate() {
-    this.bbCodeSubject = this._generationService.generateTitle();
-    this.bbCodeContent = this._generationService.generate();
+    this.isLoading = true;
+    setTimeout(() => {
+      this.bbCodeSubject = this._generationService.generateTitle();
+      this.bbCodeContent = this._generationService.generate();
+      this.toastr.success('Your report has been generated!', 'Success');
+      this.isLoading = false;
+    }, 200);
   }
 }
