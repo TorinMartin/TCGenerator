@@ -4,6 +4,7 @@ import { PersonService } from '../person/person-service.service';
 import { EvidenceService } from '../evidence/evidence.service';
 import { VehicleService } from '../vehicle/vehicle-service.service';
 import { Exhibit } from '../evidence/exhibit.model';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class GenerationService {
         private _detailService: DetailService,
         private _personService: PersonService,
         private _vehicleService: VehicleService,
-        private _evidenceService: EvidenceService
+        private _evidenceService: EvidenceService,
+        private _cookieService: CookieService,
     ) { }
 
     generateTitle(): string {
@@ -49,6 +51,11 @@ export class GenerationService {
         report = report.replace('{{reportEmployeeNumber}}', this._detailService.reportEmployeeNum);
         report = report.replace('{{reportStationUnit}}', this._detailService.reportStationUnit);
         report = report.replace('{{reportUnitCar}}', this._detailService.reportUnitCar);
+
+        this._cookieService.set('reportPreparedBy', this._detailService.reportPreparedBy, 365);
+        this._cookieService.set('reportEmployeeNum', this._detailService.reportEmployeeNum, 365);
+        this._cookieService.set('reportStationUnit', this._detailService.reportStationUnit, 365);
+        this._cookieService.set('reportUnitCar', this._detailService.reportUnitCar, 365);
 
         return report;
     }

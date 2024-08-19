@@ -7,16 +7,16 @@
     </tr>
     <tr>
        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-         <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="L. Name, F.Name" (input)="onReportPreparedByChange($event)">
+         <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="L. Name, F.Name" (input)="onReportPreparedByChange($event)" [(ngModel)]="detailService.reportPreparedBy">
        </td>
        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-         <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="#00000" (input)="onReportEmployeeNumberChange($event)">
+         <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="#00000" (input)="onReportEmployeeNumberChange($event)" [(ngModel)]="detailService.reportEmployeeNum">
        </td>
        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-         <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Station/Unit" (input)="onReportStationUnitChange($event)">
+         <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Station/Unit" (input)="onReportStationUnitChange($event)" [(ngModel)]="detailService.reportStationUnit">
        </td>
        <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-         <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Unit/Car #" (input)="onReportUnitCarChange($event)">
+         <input type="text" id="smallInput" class="form-control form-control-sm" placeholder="Unit/Car #" (input)="onReportUnitCarChange($event)" [(ngModel)]="detailService.reportUnitCar">
        </td>
     </tr>
  </table>
