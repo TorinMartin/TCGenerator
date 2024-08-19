@@ -3,6 +3,7 @@ import { DetailService } from '../detail/detail.service';
 import { PersonService } from '../person/person-service.service';
 import { EvidenceService } from '../evidence/evidence.service';
 import { VehicleService } from '../vehicle/vehicle-service.service';
+import { Exhibit } from '../evidence/exhibit.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,8 @@ export class GenerationService {
         report = report.replace('{{involvedVehiclesTemplate}}', this.buildInvolveVehiclesSection());
 
         report = report.replace('{{reportNarrative}}', this._detailService.reportNarrative);
+
+        report = report.replace('{{evidence}}', this.buildEvidenceSection());
 
         report = report.replace('{{reportPreparedBy}}', this._detailService.reportPreparedBy);
         report = report.replace('{{reportEmployeeNumber}}', this._detailService.reportEmployeeNum);
@@ -76,6 +79,67 @@ export class GenerationService {
             vehicleEntry = vehicleEntry.replace('{{towed}}', vehicle.towed);
 
             result += vehicleEntry;
+        }
+
+        return result;
+    }
+
+    private buildExhibitSection(exhibit: Exhibit): string {
+        let result = ''
+
+        for (let e of exhibit.evidence) {
+            switch (e.type) {
+                case 'text':
+                    result += 
+                    `
+                        ${e.value}
+                    `;
+                    break;
+                case 'image':
+                    result +=
+                    `
+                        [img]${e.value}[/img]
+                    `;
+                    break;
+                case 'do':
+                    result +=
+                    `
+                    [me]${e.value}[/me]
+                    `;
+                    break;
+                default:
+                    result += 
+                    `
+                        ${e.value}
+                    `;
+                    break;
+            }
+        }
+
+        return result;
+    } 
+
+    private buildEvidenceSection(): string {
+        let result = '';
+
+        for (let exhibit of this._evidenceService.getExhibits()) {
+            result += this._evidenceService.generateTitle(exhibit);
+            let content = this.buildExhibitSection(exhibit);
+
+            if (exhibit.isSpoiler) {
+                result += 
+                `
+                    [spoiler]
+                        ${content}
+                    [/spoiler]
+                `;
+            }
+            else {
+                result +=
+                `
+                    ${content}
+                `
+            }
         }
 
         return result;
@@ -184,7 +248,8 @@ export class GenerationService {
 
             [olddivbox=white][center][size=85][b]ATTACHED EVIDENCE[/b][/size][/center]
 
-            [size=85]EVIDENCE HERE
+            [size=85]
+            {{evidence}}
 
             [/size][/olddivbox]
 
