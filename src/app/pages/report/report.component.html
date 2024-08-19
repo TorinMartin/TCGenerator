@@ -13,8 +13,9 @@
     <div class="mt-3 d-flex justify-content-center">
         <button class="btn btn-primary btn-lg fw-bold" (click)="generate()">Generate</button>
     </div> 
-    <div class="mb-3 d-flex justify-content-center">
-        <textarea readonly class="form-control bb-code mt-3" rows="10" [value]="bbCodeContent"></textarea>
+    <div class="mb-3 mt-3 d-flex justify-content-center flex-column align-items-center">
+        <input readonly type="text" class="form-control form-control-sm bb-code-title" placeholder="Subject" [value]="bbCodeSubject" />
+        <textarea readonly placeholder="Content" class="form-control bb-code mt-3" rows="10" [value]="bbCodeContent"></textarea>
     </div>
 
 </div>

@@ -17,6 +17,16 @@ export class GenerationService {
         private _evidenceService: EvidenceService
     ) { }
 
+    generateTitle(): string {
+        let type = this._detailService.reportType;
+        let num = this._detailService.reportNumber;
+        let location = this._detailService.reportLocation;
+
+        let title = `[TC-${num}] ${location}`;
+
+        return type === 'DITC' ? `[DITC]${title}` : title;
+    }
+
     generate() {
         let report = this._reportTemplate;
 

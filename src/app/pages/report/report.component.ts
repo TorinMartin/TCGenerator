@@ -9,11 +9,13 @@ import { GenerationService } from '../../services/generation/generation.service'
 })
 export class ReportComponent {
 
+  bbCodeSubject: string = "";
   bbCodeContent: string = "";
 
   constructor(private _generationService: GenerationService) { }
 
   generate() {
+    this.bbCodeSubject = this._generationService.generateTitle();
     this.bbCodeContent = this._generationService.generate();
   }
 }
