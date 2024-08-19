@@ -1,5 +1,4 @@
 .bb-code {
-    width: 75%;
     resize: none;
     font-family: "Consolas", "Courier New", monospace;
     font-size: 0.7rem;
@@ -12,3 +11,29 @@
     height: 1.5rem;
     border-width: 0.25em;
 }
+
+.input-group {
+    width: 75%;
+}
+
+.cpy-btn {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    opacity: 0.8;
+}
+
+.textarea-container {
+    width: 75%;
+    display:inline-block;
+    position:relative;
+}
+
+.cpy-btn-overlay {
+    position: absolute;
+    top: 25px;
+    right: 20px; 
+    z-index: 2; 
+    opacity: 0.8;
+  }
