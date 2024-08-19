@@ -1,10 +1,9 @@
 .bb-code {
     width: 75%;
     resize: none;
-}
-
-.bb-code-title {
-    width: 75%;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.7rem;
+    color: #797979;
 }
 
 .loading {
