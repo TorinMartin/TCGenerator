@@ -26,9 +26,11 @@
 
       <ng-template #noSpoiler>
          <ng-container *ngFor="let evidence of exhibit.evidence">
-           <p *ngIf="evidence.type === 'text'">{{ evidence.value }}</p>
-           <img *ngIf="evidence.type === 'image'" [src]="evidence.value" class="postimage" alt="Image">
-           <p *ngIf="evidence.type === 'do'" class="do">{{ evidence.value }}</p>
+            <div class="mb-3">
+               <p *ngIf="evidence.type === 'text'">{{ evidence.value }}</p>
+               <img *ngIf="evidence.type === 'image'" [src]="evidence.value" class="postimage" alt="Image">
+               <p *ngIf="evidence.type === 'do'" class="do">{{ evidence.value }}</p>
+            </div>
          </ng-container>
       </ng-template>
     </div>
