@@ -11,8 +11,12 @@ export class PersonService {
   public persons: Person[] = [new Person("D1")];
 
   getPersons() {
-    //let result = this.persons.sort((a, b) => a.id[a.id] - b.id);
     return this.persons;
+  }
+
+  getPersonsByCode(filter: string): Person[] {
+    let result = this.persons.filter(p => p.id.startsWith(filter));
+    return result ?? [];
   }
 
   addPerson() {

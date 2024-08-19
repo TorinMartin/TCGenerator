@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Vehicle } from '../../pages/report/components/involved-vehicles/vehicle.model';
+import { PersonService } from '../person/person-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class VehicleService {
 
   public vehicles: Vehicle[] = [new Vehicle(1)];
 
-  constructor() { }
+  constructor(private _personService: PersonService) { }
 
   getVehicles() {
     let result = this.vehicles.sort((a, b) => a.id - b.id);
@@ -24,7 +25,16 @@ export class VehicleService {
     }
 
     let vehicle: Vehicle = new Vehicle(newId);
+    vehicle.driver = this.getFreeDriverId();
+
     this.vehicles.push(vehicle);
+  }
+
+  getFreeDriverId(): string {
+    let drivers = this._personService.getPersonsByCode("D");
+    const vehicles = new Set(this.vehicles.map(v => v.driver));
+
+    return drivers.find(d => !vehicles.has(d.id))?.id || "D1";
   }
 
   removeVehicle(idToDel: number) {

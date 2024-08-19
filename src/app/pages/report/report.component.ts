@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GenerationService } from '../../services/generation/generation.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,7 +13,7 @@ export class ReportComponent {
   bbCodeContent: string = "";
   isLoading: boolean = false;
 
-  constructor(private _generationService: GenerationService, private toastr: ToastrService) { }
+  constructor(private _generationService: GenerationService, private _toastService: ToastrService) { }
 
   generate() {
     this.isLoading = true;
@@ -23,31 +22,31 @@ export class ReportComponent {
     setTimeout(() => {
       this.bbCodeSubject = this._generationService.generateTitle();
       this.bbCodeContent = this._generationService.generate();
-      this.toastr.success('Your report has been generated!', 'Success');
+      this._toastService.success('Your report has been generated!', 'Success');
       this.isLoading = false;
     }, 200);
   }
 
   copyTitle() {
     if (this.bbCodeSubject === "") {
-      this.toastr.error('Generate a report first.', 'Nothing To Copy');
+      this._toastService.error('Generate a report first.', 'Nothing To Copy');
     }
     else {
       navigator.clipboard.writeText(this.bbCodeSubject).then(
-        () => this.toastr.info('Report subject copied.', 'Copied Subject'),
-        () => this.toastr.info('Unable to copy report subject!', 'Error')
+        () => this._toastService.info('Report subject copied.', 'Copied Subject'),
+        () => this._toastService.info('Unable to copy report subject!', 'Error')
       );
     }
   }
 
   copyBody() {
     if (this.bbCodeContent === "") {
-      this.toastr.error('Generate a report first.', 'Nothing To Copy');
+      this._toastService.error('Generate a report first.', 'Nothing To Copy');
     }
     else {
       navigator.clipboard.writeText(this.bbCodeContent).then(
-        () => this.toastr.info('Report BBCode copied.', 'Copied BBCode'),
-        () => this.toastr.info('Unable to copy report content', 'Error')
+        () => this._toastService.info('Report BBCode copied.', 'Copied BBCode'),
+        () => this._toastService.info('Unable to copy report content', 'Error')
       );
     }
   }

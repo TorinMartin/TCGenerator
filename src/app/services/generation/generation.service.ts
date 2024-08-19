@@ -156,129 +156,128 @@ export class GenerationService {
     }
 
     private _involvedPersonTemplate: string =
-    `
-        [tr][td][size=85]{{id}}
-        [/size][/td]
-        [td][size=85]{{lastName}}
-        [/size][/td]
-        [td][size=85]{{firstName}}
-        [/size][/td]
-        [td][size=85]{{sex}}
-        [/size][/td]
-        [td][size=85]{{age}}
-        [/size][/td]
-        [td][size=85]{{belted}}
-        [/size][/td]
-        [td][size=85]{{status}}
-        [/size][/td][/tr]
-
-    `;
+`
+[tr][td][size=85]{{id}}
+[/size][/td]
+[td][size=85]{{lastName}}
+[/size][/td]
+[td][size=85]{{firstName}}
+[/size][/td]
+[td][size=85]{{sex}}
+[/size][/td]
+[td][size=85]{{age}}
+[/size][/td]
+[td][size=85]{{belted}}
+[/size][/td]
+[td][size=85]{{status}}
+[/size][/td][/tr]
+`;
 
     private _involvedVehiclesTemplate: string =
-    `
-            [tr][td][size=85]{{id}}
-            [/size][/td]
-            [td][size=85]{{driver}}
-            [/size][/td]
-            [td][size=85]{{passengers}}
-            [/size][/td]
-            [td][size=85]{{plate}}
-            [/size][/td]
-            [td][size=85]{{color}}
-            [/size][/td]
-            [td][size=85]{{model}}
-            [/size][/td]
-            [td][size=85]{{damage}}
-            [/size][/td]
-            [td][size=85]{{towed}}
-            [/size][/td][/tr]
-    `;
+`
+[tr][td][size=85]{{id}}
+[/size][/td]
+[td][size=85]{{driver}}
+[/size][/td]
+[td][size=85]{{passengers}}
+[/size][/td]
+[td][size=85]{{plate}}
+[/size][/td]
+[td][size=85]{{color}}
+[/size][/td]
+[td][size=85]{{model}}
+[/size][/td]
+[td][size=85]{{damage}}
+[/size][/td]
+[td][size=85]{{towed}}
+[/size][/td][/tr]
+`;
 
     private _reportTemplate: string = 
-        `
-            [divbox=white][center][lssdheader][/lssdheader][/center]
+`
+[divbox=white][center][lssdheader][/lssdheader][/center]
 
-            [b][center]Traffic Collision Report Form[/center][/b]
+[b][center]Traffic Collision Report Form[/center][/b]
 
-            [center][size=150]{{reportType}}-({{reportNumber}})
-            [/size][/center]
-            [hr][/hr]
-            [table=Arial][tr]
-            [td][size=85][b]LOCATION OF COLLISION[/b][/size][/td]
-            [td][size=85][b]DATE OF COLLISION[/b][/size][/td]
-            [td][size=85][b]TIME OF COLLISION[/b][/size][/td]
-            [/tr]
-            [tr]
-            [td][size=85]{{reportLocation}}
-            [/td]
-            [td][size=85]{{reportDate}}
-            [/size][/td]
-            [td][size=85]{{reportTime}}
-            [/size][/td]
-            [/tr][/table]
-            [b][center]INVOLVED PEOPLE[/center][/b]
-            [center][size=87]CODES: D - Driver (1, 2, 3)[color=transparent]â€”[/color] W - WITNESS (1, 2, 3)[color=transparent]â€”[/color] P - Passenger (1, 2, 3)[color=transparent]â€”[/color] PED - PEDESTRIAN (1, 2, 3)[/size][/center]
+[center][size=150]{{reportType}}-({{reportNumber}})
+[/size][/center]
+[hr][/hr]
+[table=Arial][tr]
+[td][size=85][b]LOCATION OF COLLISION[/b][/size][/td]
+[td][size=85][b]DATE OF COLLISION[/b][/size][/td]
+[td][size=85][b]TIME OF COLLISION[/b][/size][/td]
+[/tr]
+[tr]
+[td][size=85]{{reportLocation}}
+[/td]
+[td][size=85]{{reportDate}}
+[/size][/td]
+[td][size=85]{{reportTime}}
+[/size][/td]
+[/tr][/table]
+[b][center]INVOLVED PEOPLE[/center][/b]
+[center][size=87]CODES: D - Driver (1, 2, 3)[color=transparent]â€”[/color] W - WITNESS (1, 2, 3)[color=transparent]â€”[/color] P - Passenger (1, 2, 3)[color=transparent]â€”[/color] PED - PEDESTRIAN (1, 2, 3)[/size][/center]
 
-            [table=Arial][tr]
-            [td][size=85][b]CODE[/b][/size][/td]
-            [td][size=85][b]L. NAME[/b][/size][/td]
-            [td][size=85][b]F. NAME[/b][/size][/td]
-            [td][size=85][b]SEX[/b][/size][/td]
-            [td][size=85][b]AGE[/b][/size][/td]
-            [td][size=85][b]BELTED[/b][/size][/td]
-            [td][size=85][b]STATUS[/b][/size][/td][/tr]
+[table=Arial][tr]
+[td][size=85][b]CODE[/b][/size][/td]
+[td][size=85][b]L. NAME[/b][/size][/td]
+[td][size=85][b]F. NAME[/b][/size][/td]
+[td][size=85][b]SEX[/b][/size][/td]
+[td][size=85][b]AGE[/b][/size][/td]
+[td][size=85][b]BELTED[/b][/size][/td]
+[td][size=85][b]STATUS[/b][/size][/td][/tr]
 
-            {{involvedPersonTemplate}}
+{{involvedPersonTemplate}}
 
-            [/table]
-            [b][center]INVOLVED VEHICLES[/center][/b]
-            [center][size=87] CODES:  V - Vehicle (1, 2, 3)[/size][/center]
+[/table]
+[b][center]INVOLVED VEHICLES[/center][/b]
+[center][size=87] CODES:  V - Vehicle (1, 2, 3)[/size][/center]
 
-            [table=Arial][tr]
-            [td][size=85][b]CODE[/b][/size][/td]
-            [td][size=85][b]DRIVER[/b][/size][/td]
-            [td][size=85][b]PASSENGERS[/b][/size][/td]
-            [td][size=85][b]TAG[/b][/size][/td]
-            [td][size=85][b]COLOR[/b][/size][/td]
-            [td][size=85][b]MODEL[/b][/size][/td]
-            [td][size=85][b]DAMAGE[/b][/size][/td]
-            [td][size=85][b]TOWED[/b][/size][/td][/tr]
-
-
-            {{involvedVehiclesTemplate}}
-
-            [/table]
+[table=Arial][tr]
+[td][size=85][b]CODE[/b][/size][/td]
+[td][size=85][b]DRIVER[/b][/size][/td]
+[td][size=85][b]PASSENGERS[/b][/size][/td]
+[td][size=85][b]TAG[/b][/size][/td]
+[td][size=85][b]COLOR[/b][/size][/td]
+[td][size=85][b]MODEL[/b][/size][/td]
+[td][size=85][b]DAMAGE[/b][/size][/td]
+[td][size=85][b]TOWED[/b][/size][/td][/tr]
 
 
-            [olddivbox=white][center][size=85][b]NARRATIVE[/b][/size][/center]
+{{involvedVehiclesTemplate}}
 
-            [size=85]{{reportNarrative}}
-
-            [/size][/olddivbox]
-
-            [olddivbox=white][center][size=85][b]ATTACHED EVIDENCE[/b][/size][/center]
-
-            [size=85]
-            {{evidence}}
-
-            [/size][/olddivbox]
+[/table]
 
 
-            [table=Arial][tr]
-            [td][size=85][b]PREPARED BY[/b][/size][/td]
-            [td][size=85][b]EMPLOYEE #[/b][/size][/td]
-            [td][size=85][b]STATION/UNIT[/b][/size][/td]
-            [td][size=85][b]UNIT/CAR #[/b][/size][/td]
-            [/tr]
-            [tr]
-            [td][size=85]{{reportPreparedBy}}
-            [/size][/td]
-            [td][size=85]{{reportEmployeeNumber}}
-            [/size][/td]
-            [td][size=85]{{reportStationUnit}}
-            [/size][/td]
-            [td][size=85]{{reportUnitCar}}
-            [/size][/td][/table]
-            [hr][/hr]
-        `;
+[olddivbox=white][center][size=85][b]NARRATIVE[/b][/size][/center]
+
+[size=85]{{reportNarrative}}
+
+[/size][/olddivbox]
+
+[olddivbox=white][center][size=85][b]ATTACHED EVIDENCE[/b][/size][/center]
+
+[size=85]
+{{evidence}}
+
+[/size][/olddivbox]
+
+
+[table=Arial][tr]
+[td][size=85][b]PREPARED BY[/b][/size][/td]
+[td][size=85][b]EMPLOYEE #[/b][/size][/td]
+[td][size=85][b]STATION/UNIT[/b][/size][/td]
+[td][size=85][b]UNIT/CAR #[/b][/size][/td]
+[/tr]
+[tr]
+[td][size=85]{{reportPreparedBy}}
+[/size][/td]
+[td][size=85]{{reportEmployeeNumber}}
+[/size][/td]
+[td][size=85]{{reportStationUnit}}
+[/size][/td]
+[td][size=85]{{reportUnitCar}}
+[/size][/td][/table]
+[hr][/hr]
+`;
 }
