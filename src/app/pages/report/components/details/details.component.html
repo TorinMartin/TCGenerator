@@ -12,13 +12,13 @@
     </tr>
     <tr>
         <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%"><input type="text" class="form-control detail-input" placeholder="Location"></span>
+            <input type="text" class="form-control detail-input" placeholder="Location" (input)="onReportLocationChange($event)">
         </td>
         <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%"><input type="text" class="form-control detail-input" placeholder="DD/MMM/YYYY"><br></span>
+            <input type="text" class="form-control detail-input" placeholder="DD/MMM/YYYY" (input)="onReportDateChange($event)">
         </td>
         <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <span style="font-size:85%;line-height:116%"><input type="text" class="form-control detail-input" placeholder="00:00"><br></span>
+            <input type="text" class="form-control detail-input" placeholder="00:00" (input)="onReportTimeChange($event)">
         </td>
     </tr>
 </table><br>

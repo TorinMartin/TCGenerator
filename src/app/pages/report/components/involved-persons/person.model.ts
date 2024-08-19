@@ -1,9 +1,9 @@
 export class Person {
     public id: string;
-    public lastName: string | undefined;
-    public firstName: string | undefined;
+    public lastName: string = "";
+    public firstName: string = "";
     public sex: string = "M";
-    public age: string | undefined;
+    public age: string = "";
     public belted: string = "Y";
     public status: string = "UNHARMED";
 
