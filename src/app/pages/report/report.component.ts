@@ -18,6 +18,8 @@ export class ReportComponent {
 
   generate() {
     this.isLoading = true;
+    this.bbCodeContent = '';
+    this.bbCodeSubject = '';
     setTimeout(() => {
       this.bbCodeSubject = this._generationService.generateTitle();
       this.bbCodeContent = this._generationService.generate();
