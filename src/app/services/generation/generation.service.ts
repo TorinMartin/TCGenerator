@@ -5,6 +5,7 @@ import { EvidenceService } from '../evidence/evidence.service';
 import { VehicleService } from '../vehicle/vehicle-service.service';
 import { Exhibit } from '../evidence/exhibit.model';
 import { CookieService } from 'ngx-cookie-service';
+import { Evidence } from '../evidence/evidence.model';
 
 @Injectable({
   providedIn: 'root'
@@ -104,34 +105,31 @@ export class GenerationService {
     private buildExhibitSection(exhibit: Exhibit): string {
         let result = ''
 
-        for (let e of exhibit.evidence) {
+        //for (let e of exhibit.evidence) {
+        exhibit.evidence.forEach((e: Evidence, i: number) => {
             switch (e.type) {
                 case 'text':
-                    result += 
+                    result += i === 0 ? `${e.value}` :
                     `
-                        ${e.value}
-                    `;
+                        ${e.value}`;
                     break;
                 case 'image':
-                    result +=
+                    result += i === 0 ? `[img]${e.value}[/img]` :
                     `
-                        [img]${e.value}[/img]
-                    `;
+                        [img]${e.value}[/img]`;
                     break;
                 case 'do':
-                    result +=
+                    result += i === 0 ? `[me]${e.value}[/me]` :
                     `
-                    [me]${e.value}[/me]
-                    `;
+                        [me]${e.value}[/me]`;
                     break;
                 default:
-                    result += 
+                    result += i === 0 ? `${e.value}` :
                     `
-                        ${e.value}
-                    `;
+                        ${e.value}`;
                     break;
             }
-        }
+        });
 
         return result;
     } 

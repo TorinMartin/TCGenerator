@@ -17,7 +17,7 @@
                   <div *ngFor="let evidence of exhibit.evidence">
                      <p *ngIf="evidence.type === 'text'">{{ evidence.value }}</p>
                      <img *ngIf="evidence.type === 'image'" [src]="evidence.value" class="postimage" alt="Image">
-                     <p *ngIf="evidence.type === 'do'" class="do">{{ evidence.value }}</p>
+                     <p *ngIf="evidence.type === 'do'" class="do">* {{ evidence.value }}</p>
                    </div>
                </div>
             </div>
