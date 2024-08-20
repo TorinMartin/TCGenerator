@@ -2,8 +2,12 @@
     font-size: 0.6rem !important;
 }
 
+.smaller-cell {
+    width: 4%;
+}
+
 .small-cell {
-    width: 8%;
+    width: 10%;
 }
 
 .large-cell {
