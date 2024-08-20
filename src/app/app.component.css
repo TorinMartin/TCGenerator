@@ -8,10 +8,60 @@ main {
     position: relative;
 }
 
-  .content {
+.content {
     max-width: 50vw;
     overflow: hidden;
     margin: 0 auto;
     line-height: 21px;
     font-size: 14px;
+}
+
+@media screen and (max-width: 1585px) {
+  .content {
+    max-width: 65vw;
+    overflow: hidden;
+    margin: 0 auto;
+    line-height: 21px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1215px) {
+  .content {
+    max-width: 75vw;
+    overflow: hidden;
+    margin: 0 auto;
+    line-height: 21px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1115px) {
+  .content {
+    max-width: 85vw;
+    overflow: hidden;
+    margin: 0 auto;
+    line-height: 21px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .content {
+    max-width: 95vw;
+    overflow: hidden;
+    margin: 0 auto;
+    line-height: 21px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 895px) {
+  .content {
+    max-width: 100vw;
+    overflow: hidden;
+    margin: 0 auto;
+    line-height: 21px;
+    font-size: 14px;
+  }
 }
