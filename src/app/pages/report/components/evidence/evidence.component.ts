@@ -21,9 +21,7 @@ export class EvidenceComponent {
   }
 
   getExhibits(): Exhibit[] {
-    let exh = this._evidenceService.getExhibits();
-    console.log(exh);
-    return this._evidenceService.getExhibits();
+    return this._evidenceService.getExhibits().sort((a, b) => a.id - b.id);
   }
 
   generateExhibitTitle(exhibit: Exhibit): string {
@@ -33,5 +31,5 @@ export class EvidenceComponent {
   removeExhibit(id: number) {
     this._evidenceService.deleteExhibit(id);
   }
-
+  
 }

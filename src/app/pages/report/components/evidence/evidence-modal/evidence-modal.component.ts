@@ -89,4 +89,9 @@ export class EvidenceModalComponent {
     const imageExtensions = /\.(jpg|jpeg|png|gif|bmp|webp)$/i;
     return imageExtensions.test(url);
   }
+
+  getAddingChar(): string {
+    let id = this._evidenceService.getNextId();
+    return this._evidenceService.getCharCode(id);
+  }
 }

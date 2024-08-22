@@ -10,9 +10,18 @@ export class EvidenceService {
 
   private _exhibits: Exhibit[] = [];
 
-  getNextId() {
-    let last = this._exhibits.length;
-    return last + 1;
+  getNextId(): number {
+    const filteredIds = this._exhibits.map(e => e.id).sort((a, b) => a - b);
+  
+    let newId = 1;
+    for (let i = 0; i < filteredIds.length; i++) {
+      if (filteredIds[i] !== newId) {
+        break;
+      }
+      newId++;
+    }
+  
+    return newId;
   }
 
   addExhibit(exhibit: Exhibit) {
@@ -24,9 +33,15 @@ export class EvidenceService {
   }
 
   generateTitle(exhibit: Exhibit): string {
-    const baseCharCode = 'A'.charCodeAt(0);
-    let title = `EXHIBIT ${String.fromCharCode(baseCharCode + (exhibit.id - 1))}. ${exhibit.title.toUpperCase()}`;
+    
+    let title = `EXHIBIT ${this.getCharCode(exhibit.id)}. ${exhibit.title.toUpperCase()}`;
     return title;
+  }
+
+  getCharCode(id: number): string
+  {
+    const baseCharCode = 'A'.charCodeAt(0);
+    return String.fromCharCode(baseCharCode + (id - 1));
   }
 
   deleteExhibit(id: number) {
