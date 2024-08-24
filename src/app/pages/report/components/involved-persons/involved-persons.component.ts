@@ -13,8 +13,8 @@ import { PersonService } from '../../../../services/person/person-service.servic
 })
 export class InvolvedPersonsComponent {
   readonly codeOptions: string[] = ['D', 'P', 'W', 'PED'];
-  readonly sexOptions: string[] = ['M', 'F'];
-  readonly beltedOptions: string[] = ['Y', 'N'];
+  readonly sexOptions: string[] = ['M', 'F', 'U.N.K'];
+  readonly beltedOptions: string[] = ['Y', 'N', 'N/A'];
   readonly statusOptions: string[] = ['UNHARMED', 'INJURED', 'SEVERELY INJURED', 'DECEASED'];
 
   constructor(public personService: PersonService) { }
