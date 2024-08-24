@@ -36,4 +36,8 @@
     right: 20px; 
     z-index: 2; 
     opacity: 0.8;
-  }
+}
+
+.footer-text {
+    font-size: 0.7rem;
+}
