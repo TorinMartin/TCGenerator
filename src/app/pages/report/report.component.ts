@@ -1,11 +1,21 @@
 import { Component } from '@angular/core';
 import { GenerationService } from '../../services/generation/generation.service';
 import { ToastrService } from 'ngx-toastr';
+import { FooterComponent } from "./components/footer/footer.component";
+import { EvidenceComponent } from "./components/evidence/evidence.component";
+import { NarrativeComponent } from "./components/narrative/narrative.component";
+import { InvolvedVehiclesComponent } from "./components/involved-vehicles/involved-vehicles.component";
+import { InvolvedPersonsComponent } from "./components/involved-persons/involved-persons.component";
+import { DetailsComponent } from "./components/details/details.component";
+import { HeaderComponent } from "./components/header/header.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-report',
+  standalone: true,
   templateUrl: './report.component.html',
-  styleUrl: './report.component.css'
+  styleUrl: './report.component.css',
+  imports: [CommonModule, FooterComponent, EvidenceComponent, NarrativeComponent, InvolvedVehiclesComponent, InvolvedPersonsComponent, DetailsComponent, HeaderComponent]
 })
 export class ReportComponent {
 
