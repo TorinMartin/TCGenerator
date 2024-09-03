@@ -25,9 +25,15 @@ export class GenerationService {
         let num = this._detailService.reportNumber;
         let location = this._detailService.reportLocation;
 
-        let title = `[TC-${num}] ${location}`;
+        let title = `[${type}-${num}] ${location}`;
 
-        return type === 'DITC' ? `[DITC]${title}` : title;
+        return title;
+    }
+
+    validateDate() {
+        const regex = /^\d{2}\/[A-Z]{3}\/\d{2}$/;
+    
+        return regex.test(this._detailService.reportNumber);
     }
 
     generate() {

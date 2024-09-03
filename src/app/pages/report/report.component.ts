@@ -26,9 +26,15 @@ export class ReportComponent {
   constructor(private _generationService: GenerationService, private _toastService: ToastrService) { }
 
   generate() {
+    if (!this._generationService.validateDate()) {
+      this._toastService.error('Use DD/MMM/YYYY', 'Invalid Date');
+      return;
+    }
+
     this.isLoading = true;
     this.bbCodeContent = "";
     this.bbCodeSubject = "";
+
     setTimeout(() => {
       this.bbCodeSubject = this._generationService.generateTitle();
       this.bbCodeContent = this._generationService.generate();
