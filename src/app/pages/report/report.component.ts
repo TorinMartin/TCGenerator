@@ -27,7 +27,7 @@ export class ReportComponent {
 
   generate() {
     if (!this._generationService.validateDate()) {
-      this._toastService.error('Use DD/MMM/YYYY', 'Invalid Date');
+      this._toastService.error('Use DD/MMM/YY', 'Invalid Date');
       return;
     }
 
