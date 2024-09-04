@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbAlertModule, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 import { DetailService } from '../../../../services/detail/detail.service';
 
 @Component({
   selector: 'report-header',
   standalone: true,
-  imports: [CommonModule, NgbDropdownModule],
+  imports: [CommonModule, NgbDropdownModule, NgbAlertModule, NgbDatepickerModule, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -14,16 +15,21 @@ export class HeaderComponent {
   readonly typeOptions: string[] = ['TC', 'DITC'];
   selectedType: string = this.typeOptions[0];
 
-  constructor(private _detailService: DetailService) { }
+  constructor(public detailService: DetailService) { }
 
   selectType(option: string) {
     this.selectedType = option;
-    this._detailService.reportType = option;
+    this.detailService.reportType = option;
   }
 
-  onReportNumberChange(event: Event) {
+  onTitleDateChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
 
-    this._detailService.reportNumber = inputElement.value;
+    this.detailService.reportTitleDate = inputElement.value;
   }
+
+  onDateSelect(ngbDate: NgbDateStruct): void {
+    this.detailService.setTitleDate(ngbDate);
+  }
+
 }

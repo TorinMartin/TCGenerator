@@ -22,7 +22,7 @@ export class GenerationService {
 
     generateTitle(): string {
         let type = this._detailService.reportType;
-        let num = this._detailService.reportNumber;
+        let num = this._detailService.reportTitleDate;
         let location = this._detailService.reportLocation;
 
         let title = `[${type}-${num}] ${location}`;
@@ -33,14 +33,14 @@ export class GenerationService {
     validateDate() {
         const regex = /^\d{2}\/[A-Z]{3}\/\d{2}$/;
     
-        return regex.test(this._detailService.reportNumber);
+        return regex.test(this._detailService.reportTitleDate);
     }
 
     generate() {
         let report = this._reportTemplate;
 
         report = report.replace('{{reportType}}', this._detailService.reportType);
-        report = report.replace('{{reportNumber}}', this._detailService.reportNumber);
+        report = report.replace('{{reportNumber}}', this._detailService.reportTitleDate);
 
         report = report.replace('{{reportLocation}}', this._detailService.reportLocation);
         report = report.replace('{{reportDate}}', this._detailService.reportDate);
