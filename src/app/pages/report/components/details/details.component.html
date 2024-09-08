@@ -18,7 +18,7 @@
             <input type="text" class="form-control detail-input" placeholder="DD/MMM/YYYY" [(ngModel)]="detailService.reportDate">
         </td>
         <td valign="top" style="border-top:1px solid #111;border-right:1px solid #111;border-left:1px solid #111;border-bottom:1px solid #111;padding:3px;padding-left:6px;margin:1px;border-radius:2px">
-            <input type="text" class="form-control detail-input" placeholder="00:00" (input)="onReportTimeChange($event)">
+            <input type="text" class="form-control detail-input" placeholder="00:00" [(ngModel)]="detailService.reportTime">
         </td>
     </tr>
 </table><br>

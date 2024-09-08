@@ -22,7 +22,8 @@ export class DetailService {
 
   constructor(private _cookieService: CookieService) {
     let currentDate = new Date();
-    this.date =  { day: currentDate.getDate(), month: currentDate.getMonth() + 1, year: currentDate.getFullYear() };
+    this.date = { day: currentDate.getUTCDate(), month: currentDate.getUTCMonth() + 1, year: currentDate.getUTCFullYear() };
+    this.reportTime = `${String(currentDate.getUTCHours()).padStart(2, '0')}:${String(currentDate.getUTCMinutes()).padStart(2, '0')}`;
     this.setTitleDate(this.date);
   }
 
